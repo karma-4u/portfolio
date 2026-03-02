@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAYZ GAMES | Ultimate PC Store Pakistan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #050505;
+            --bg-panel: rgba(20, 20, 25, 0.6);
+            --neon-cyan: #00f3ff;
+            --neon-purple: #9d00ff;
+            --neon-orange: #ff3c00;
+            --neon-green: #0aff0a;
+            --text-main: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scrollbar-width: thin;
+            scrollbar-color: var(--neon-cyan) var(--bg-dark);
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(157, 0, 255, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(0, 243, 255, 0.1) 0%, transparent 20%);
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+        }
+
+        /* --- Animations --- */
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 5px var(--neon-cyan);
+            }
+
+            50% {
+                box-shadow: 0 0 20px var(--neon-cyan), 0 0 10px var(--neon-purple);
+            }
+
+            100% {
+                box-shadow: 0 0 5px var(--neon-cyan);
+            }
+        }
+
+        @keyframes pulse-border {
+            0% {
+                border-color: rgba(255, 255, 255, 0.1);
+            }
+
+            50% {
+                border-color: var(--neon-cyan);
+            }
+
+            100% {
+                border-color: rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        /* --- RGB Border Animation --- */
+        @keyframes cyan-pulse {
+            0% {
+                box-shadow: 0 0 5px var(--neon-cyan);
+            }
+
+            50% {
+                box-shadow: 0 0 20px var(--neon-cyan);
+            }
+
+            100% {
+                box-shadow: 0 0 5px var(--neon-cyan);
+            }
+        }
+
+        .rgb-border {
+            border: 2px solid var(--neon-cyan);
+            animation: cyan-pulse 2s infinite ease-in-out;
+        }
+
+        .rgb-border::after {
+            display: none;
+        }
+
+        /* --- Navbar --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: var(--glass-border);
+            z-index: 1000;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 0 0 10px var(--neon-cyan);
+            letter-spacing: 2px;
+            font-family: 'Orbitron';
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 8px var(--neon-cyan);
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: 0.3s;
+        }
+
+        .cart-icon:hover {
+            color: var(--neon-cyan);
+            transform: scale(1.1);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--neon-cyan);
+            color: #000;
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 2px 6px;
+            border-radius: 50%;
+            box-shadow: 0 0 5px var(--neon-cyan);
+        }
+
+        /* Search Bar */
+        .search-container {
+            position: relative;
+            margin: 0 2rem;
+            flex-grow: 1;
+            max-width: 500px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            border: 1px solid var(--neon-purple);
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            font-family: 'Rajdhani';
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .search-input:focus {
+            box-shadow: 0 0 15px rgba(157, 0, 255, 0.3);
+            border-color: var(--neon-cyan);
+        }
+
+        .search-icon-btn {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 0 2rem;
+            overflow: hidden;
+            margin-top: 60px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('https://images.unsplash.com/photo-1593640408182-31c70c8268f5?q=80&w=2000&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+            filter: blur(3px);
+            animation: pulse-bg 10s infinite alternate;
+        }
+
+        @keyframes pulse-bg {
+            0% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(1.05);
+            }
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, #fff, var(--neon-cyan), #fff);
+            background-size: 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-text 5s infinite linear;
+            text-shadow: 0 0 30px rgba(0, 243, 255, 0.3);
+        }
+
+        @keyframes gradient-text {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            100% {
+                background-position: 200% 50%;
+            }
+        }
+
+        .hero-content p {
+            font-size: 1.4rem;
+            color: var(--text-main);
+            margin-bottom: 2.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+            line-height: 1.6;
+        }
+
+        .btn-main {
+            background: var(--neon-purple);
+            border: none;
+            color: #fff;
+            padding: 1rem 3rem;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .btn-main:hover {
+            background: var(--neon-cyan);
+            color: #000;
+            box-shadow: 0 0 20px var(--neon-cyan);
+            transform: translateY(-3px);
+        }
+
+        /* --- Builder Section --- */
+        .builder-section {
+            padding: 4rem 5%;
+            background: linear-gradient(180deg, var(--bg-dark), #0a0a0f);
+        }
+
+        .builder-container {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .builder-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .part-category {
+            background: var(--bg-panel);
+            border: var(--glass-border);
+            border-radius: 10px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .category-title {
+            font-size: 1.2rem;
+            color: var(--neon-cyan);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .parts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .part-option {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid transparent;
+            padding: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            background-size: cover;
+            background-position: center;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+        }
+
+        .part-option:hover {
+            border-color: var(--neon-purple);
+            background: rgba(188, 19, 254, 0.1);
+        }
+
+        .part-option.selected {
+            border-color: var(--neon-cyan);
+            background: rgba(0, 243, 255, 0.15);
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+        }
+
+        .part-name {
+            font-weight: 600;
+            margin: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        .part-price {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Stats Panel */
+        .stats-panel {
+            background: rgba(10, 10, 15, 0.9);
+            border: 1px solid var(--neon-purple);
+            border-radius: 10px;
+            padding: 1.5rem;
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+            box-shadow: 0 0 20px rgba(157, 0, 255, 0.1);
+        }
+
+        .stat-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .fps-meter {
+            height: 120px;
+            width: 120px;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: conic-gradient(var(--neon-cyan) 0deg, transparent 0deg);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+        }
+
+        .fps-meter::before {
+            content: '';
+            position: absolute;
+            width: 85%;
+            height: 85%;
+            background: #0a0a0f;
+            border-radius: 50%;
+        }
+
+        .fps-value {
+            position: relative;
+            z-index: 10;
+            font-size: 2rem;
+            font-family: 'Orbitron';
+            color: #fff;
+            text-align: center;
+        }
+
+        .fps-value span {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .total-price {
+            font-size: 1.8rem;
+            color: var(--neon-cyan);
+            text-align: center;
+            font-family: 'Orbitron';
+            margin: 1rem 0;
+        }
+
+        .add-build-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--neon-cyan);
+            color: #000;
+            border: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            clip-path: polygon(5% 0, 100% 0, 100% 100%, 95% 100%, 0 100%, 0 0);
+            transition: 0.3s;
+        }
+
+        .add-build-btn:hover {
+            background: #fff;
+            box-shadow: 0 0 15px #fff;
+        }
+
+        /* --- Products Section --- */
+        .product-card {
+            background: var(--bg-panel);
+            border: var(--glass-border);
+            border-radius: 15px;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: 0.4s;
+            backdrop-filter: blur(5px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 20px var(--neon-cyan);
+        }
+
+        .product-card:hover::after {
+            display: none;
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--neon-purple);
+            color: #fff;
+            padding: 0.2rem 0.8rem;
+            font-size: 0.8rem;
+            border-radius: 4px;
+            font-weight: 700;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 200px;
+            background: radial-gradient(circle, #2a2a2a, #000);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 3rem;
+        }
+
+        .add-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+        }
+
+        .add-btn:hover {
+            background: var(--neon-purple);
+            box-shadow: 0 0 10px var(--neon-purple);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: #020202;
+            padding: 4rem 5%;
+            text-align: center;
+            border-top: var(--glass-border);
+            margin-top: auto;
+        }
+
+        /* --- Cart Sidebar --- */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -450px;
+            width: 400px;
+            height: 100%;
+            background: #0a0a0a;
+            border-left: 1px solid var(--neon-purple);
+            z-index: 2000;
+            padding: 2rem;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+            box-shadow: -10px 0 50px rgba(0, 0, 0, 0.8);
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: var(--glass-border);
+            padding-bottom: 1rem;
+        }
+
+        .close-cart {
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--neon-cyan);
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--neon-cyan);
+        }
+
+        .cart-item-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+        }
+
+        .cart-item-detail {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .remove-item {
+            color: #ff3c00;
+            cursor: pointer;
+            font-size: 0.8rem;
+            align-self: flex-end;
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 900px) {
+            .builder-container {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-panel {
+                position: relative;
+                top: 0;
+                margin-bottom: 2rem;
+                order: -1;
+            }
+
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+        }
+
+        .delivery-section {
+            padding: 3rem 5%;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            border-bottom: var(--glass-border);
+        }
+
+        .delivery-card {
+            background: var(--bg-panel);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            width: 300px;
+            text-align: center;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            transition: 0.3s;
+        }
+
+        .delivery-card:hover {
+            border-color: var(--neon-cyan);
+            transform: translateY(-5px);
+        }
+
+        .delivery-icon {
+            font-size: 2.5rem;
+            color: var(--neon-purple);
+        }
+
+        /* Game Chart */
+        .game-fps-row {
+            margin-bottom: 1rem;
+        }
+
+        .game-name {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0.3rem;
+        }
+
+        .fps-bar-bg {
+            width: 100%;
+            height: 6px;
+            background: #333;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .fps-bar-fill {
+            height: 100%;
+            background: var(--neon-cyan);
+            width: 0%;
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .category-btn {
+            padding: 0.5rem 1.2rem;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+            transition: 0.3s;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .category-btn:hover {
+            border-color: var(--neon-cyan);
+            background: rgba(0, 243, 255, 0.05);
+        }
+
+        .category-btn.active {
+            background: var(--neon-cyan);
+            color: #000;
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 15px var(--neon-cyan);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="logo-container">
+            <div class="logo-text">RAYZ<span style="color:var(--neon-cyan)">.SYS</span></div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" class="search-input" id="globalSearch"
+                placeholder="Search Components, Deals, or Builds..." onkeyup="handleGlobalSearch()">
+            <i class="fas fa-search search-icon-btn"></i>
+        </div>
+
+        <ul class="nav-links">
+            <a href="e-commerce.html">HOME</a>
+            <a href="javascript:void(0)" onclick="checkAuthAndBuild()">SYS CONFIG</a>
+            <a href="components.html">COMPONENTS</a>
+            <a href="orders.html" id="ordersLink" style="display:none;">ORDERS</a>
+            <div id="authLink">
+                <a href="auth.html">LOGIN</a>
+            </div>
+        </ul>
+        <div class="cart-icon" onclick="toggleCart()">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count">0</span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>BUILD YOUR LEGACY</h1>
+            <p>Welcome to Rayz.Sys, Pakistan's premier destination for custom-high-end-performance-tuned PC's. We don't
+                just sell parts; we engineer your future. From extreme gaming rigs to professional workstations, our
+                mission is to deliver the ultimate power, reliability, and futuristic hardware straight to your desk.
+                Secure your station, log in now, and start your building journey with the nation's #1 component store.
+            </p>
+            <button class="btn-main" onclick="checkAuthAndBuild()">Start Building</button>
+        </div>
+    </section>
+
+    <!-- Delivery Section -->
+    <section class="delivery-section">
+        <div class="delivery-card">
+            <i class="fas fa-truck delivery-icon"></i>
+            <h3 style="font-size:1.1rem;">NATIONWIDE DELIVERY</h3>
+            <p style="font-size:0.9rem; color:var(--text-muted);">Fast shipping to Karachi, Lahore, Islamabad & All
+                Pakistan.</p>
+        </div>
+        <div class="delivery-card">
+            <i class="fas fa-shield-alt delivery-icon" style="color:var(--neon-green)"></i>
+            <h3 style="font-size:1.1rem;">OFFICIAL WARRANTY</h3>
+            <p style="font-size:0.9rem; color:var(--text-muted);">100% Authentic products with local warranty support.
+            </p>
+        </div>
+        <div class="delivery-card">
+            <i class="fas fa-headset delivery-icon" style="color:var(--neon-cyan)"></i>
+            <h3 style="font-size:1.1rem;">GAMER SUPPORT</h3>
+            <p style="font-size:0.9rem; color:var(--text-muted);">Expert advice from PC building professionals.</p>
+        </div>
+    </section>
+
+    </section>
+
+    <!-- Mega Deals Section -->
+    <section class="deals-section" id="deals" style="padding:4rem 5%; background: var(--bg-dark);">
+        <h2 class="section-title" style="text-align:center; font-size:2rem; margin-bottom:2rem; color:#fff;">MEGA <span
+                style="color:var(--neon-orange)">DEALS</span></h2>
+        <div id="dealsGrid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:2rem;">
+            <!-- JS Injected Deals -->
+        </div>
+    </section>
+
+
+
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>YOUR ORDER</h3>
+            <i class="fas fa-times close-cart" onclick="toggleCart()"></i>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Items injected via JS -->
+        </div>
+
+        <div class="checkout-area" style="margin-top:1.5rem; border-top:1px solid #333; padding-top:1rem;">
+            <div style="margin-bottom:1rem;">
+                <label style="font-size:0.8rem; color:#888;">COUNTRY / REGION</label>
+                <input type="text" id="shippingCountry" value="Pakistan" disabled
+                    style="width:100%; padding:8px; background:#080808; border:1px solid #222; color:#555; border-radius:5px; margin-top:5px;">
+            </div>
+
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-bottom:1rem;">
+                <div>
+                    <label style="font-size:0.8rem; color:#888;">DISTRICT</label>
+                    <input type="text" id="shippingDistrict" placeholder="e.g. South"
+                        style="width:100%; padding:8px; background:#111; border:1px solid #333; color:#fff; border-radius:5px; margin-top:5px;">
+                </div>
+                <div>
+                    <label style="font-size:0.8rem; color:#888;">CITY</label>
+                    <select id="shippingCity" onchange="updateCartUI()"
+                        style="width:100%; padding:8px; background:#111; border:1px solid #333; color:#fff; border-radius:5px; margin-top:5px;">
+                        <option value="Karachi">Karachi</option>
+                        <option value="Lahore">Lahore</option>
+                        <option value="Islamabad">Islamabad</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+            </div>
+
+            <div style="margin-bottom:1rem;">
+                <label style="font-size:0.8rem; color:#888;">HOUSE # / STREET / AREA</label>
+                <textarea id="shippingAddress" placeholder="House 123, Street 4, Phase 5..."
+                    style="width:100%; padding:8px; background:#111; border:1px solid #333; color:#fff; border-radius:5px; margin-top:5px; height:60px; font-family:inherit;"></textarea>
+            </div>
+
+            <div style="margin-bottom:1rem;">
+                <label style="font-size:0.8rem; color:#888;">PHONE NUMBER</label>
+                <input type="tel" id="shippingContact" placeholder="+92 3XX XXXXXXX"
+                    style="width:100%; padding:8px; background:#111; border:1px solid #333; color:#fff; border-radius:5px; margin-top:5px;">
+            </div>
+
+            <div style="margin-bottom:1rem;">
+                <label style="font-size:0.8rem; color:#888;">LANDMARK / OTHER (OPTIONAL)</label>
+                <input type="text" id="shippingLandmark" placeholder="Near Cyber Tower..."
+                    style="width:100%; padding:8px; background:#111; border:1px solid #333; color:#fff; border-radius:5px; margin-top:5px;">
+            </div>
+
+            <div style="margin-bottom:1rem;">
+                <label style="font-size:0.8rem; color:#888;">PAYMENT METHOD</label>
+                <select id="paymentMethod" onchange="updateCartUI()"
+                    style="width:100%; padding:8px; background:#111; border:1px solid #333; color:#fff; border-radius:5px; margin-top:5px;">
+                    <option value="COD">Cash on Delivery</option>
+                    <option value="Bank">Bank Transfer (5% Discount)</option>
+                    <option value="Card">Credit/Debit Card</option>
+                </select>
+            </div>
+
+            <div id="cartTotal" style="font-weight:700; color:var(--neon-cyan);">Total: Rs. 0</div>
+            <button class="add-btn" style="width:100%; margin-top:1rem; background:var(--neon-purple);"
+                onclick="placeOrder()">FINALIZE ORDER</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="logo-text" style="font-size:1.5rem;">RAYZ<span style="color:var(--neon-purple)">.SYS</span></div>
+        <p style="color:#666; margin-top:1rem;">&copy; 2026 Rayz Games Pakistan. Designed for Gamers.</p>
+    </footer>
+
+    <script>
+        // --- Database (Prices in PKR) ---
+        const componentDB = {
+            cpu: [
+                { id: 'c1', name: 'Intel Core i5-14600K', price: 95000, score: 70, power: 125, img: 'https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=500&q=60' },
+                { id: 'c2', name: 'AMD Ryzen 7 7800X3D', price: 135000, score: 95, power: 120, img: 'https://images.unsplash.com/photo-1555618568-91c2d0f97121?auto=format&fit=crop&w=500&q=60' },
+                { id: 'c3', name: 'Intel Core i9-14900K', price: 185000, score: 100, power: 250, img: 'https://images.unsplash.com/photo-1591405351990-4726e331f141?auto=format&fit=crop&w=500&q=60' },
+            ],
+            gpu: [
+                { id: 'g1', name: 'NVIDIA RTX 4060', price: 98000, score: 40, power: 115, img: 'https://images.unsplash.com/photo-1628557044797-f21a172965e3?auto=format&fit=crop&w=500&q=60' },
+                { id: 'g2', name: 'NVIDIA RTX 4070 Ti', price: 265000, score: 75, power: 285, img: 'https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=500&q=60' },
+                { id: 'g3', name: 'NVIDIA RTX 4090', price: 550000, score: 130, power: 450, img: 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=500&q=60' },
+            ],
+            ram: [
+                { id: 'r1', name: '16GB DDR5 5200MHz', price: 18000, score: 10, power: 5, img: 'https://images.unsplash.com/photo-1562976540-1502c2145186?auto=format&fit=crop&w=500&q=60' },
+                { id: 'r2', name: '32GB DDR5 6000MHz', price: 35000, score: 20, power: 8, img: 'https://images.unsplash.com/photo-1544652478-6653e09f1826?auto=format&fit=crop&w=500&q=60' },
+                { id: 'r3', name: '64GB DDR5 7200MHz', price: 65000, score: 30, power: 12, img: 'https://images.unsplash.com/photo-1535295972055-1c762f4483e5?auto=format&fit=crop&w=500&q=60' },
+            ],
+            ssd: [
+                { id: 's1', name: '1TB NVMe Gen4', price: 22000, score: 0, power: 5, img: 'https://images.unsplash.com/photo-1628557044797-f21a172965e3?auto=format&fit=crop&w=500&q=60' },
+                { id: 's2', name: '2TB NVMe Gen4', price: 42000, score: 0, power: 5, img: 'https://images.unsplash.com/photo-1558234552-0d67f1b70d5a?auto=format&fit=crop&w=500&q=60' },
+            ],
+            mobo: [
+                { id: 'm1', name: 'ASUS Prime Z790-P', price: 55000, score: 0, power: 50, img: 'https://images.unsplash.com/photo-1555680202-c86f0e12f086?auto=format&fit=crop&w=500&q=60' },
+                { id: 'm2', name: 'ROG Strix X670E-E', price: 115000, score: 0, power: 75, img: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=500&q=60' },
+            ],
+            psu: [
+                { id: 'p1', name: '750W Gold Rated', price: 25000, score: 0, power: 0, img: 'https://images.unsplash.com/photo-1531771686035-25f475954919?auto=format&fit=crop&w=500&q=60' },
+                { id: 'p2', name: '1000W Platinum', price: 45000, score: 0, power: 0, img: 'https://plus.unsplash.com/premium_photo-1664194583917-b0ba07c4ce2a?auto=format&fit=crop&w=500&q=60' },
+            ],
+            cooler: [
+                { id: 'cl1', name: 'NZXT Kraken Elite 360', price: 65000, score: 0, power: 15, img: 'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=500&q=60' },
+                { id: 'cl2', name: 'Noctua NH-D15 chromax.black', price: 28000, score: 0, power: 5, img: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=500&q=60' },
+            ],
+            case: [
+                { id: 'cs1', name: 'Lian Li PC-O11 Dynamic', price: 38000, score: 0, power: 0, img: 'https://images.unsplash.com/photo-1628557044797-f21a172965e3?auto=format&fit=crop&w=500&q=60' },
+                { id: 'cs2', name: 'NZXT H9 Flow', price: 32000, score: 0, power: 0, img: 'https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=500&q=60' },
+            ]
+        };
+
+        // Cart management (shared logic locally)
+        let cart = JSON.parse(localStorage.getItem('rayz_cart') || '[]');
+
+        function formatPKR(num) {
+            return 'Rs. ' + num.toLocaleString();
+        }
+
+        // --- Mega Deals Generator (24 Items) ---
+        const dealPrefixes = ["Starter", "Newcomer", "Esports", "Streamer", "Pro", "Ultra", "Extreme", "Titan", "Godlike", "Creator", "Basic", "Stealth"];
+        const dealSuffixes = ["Rig", "Beast", "Machine", "Station", "X", "Z", "Prime", "Elite", "Max", "Core", "Edition", "Box"];
+        const dealImages = [
+            "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=500&q=60",
+            "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=500&q=60",
+            "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=500&q=60",
+            "https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=500&q=60"
+        ];
+
+        async function initDeals() {
+            const grid = document.getElementById('dealsGrid');
+            if (!grid) return;
+
+            // Fetch Custom Products from Admin
+            let customProducts = [];
+            try {
+                const res = await fetch('http://localhost:3000/api/products');
+                customProducts = await res.json();
+            } catch (e) { console.log("Backend offline"); }
+
+            let dealsHTML = '';
+
+            // Mega Deals & Newcomer Specials - 24 items
+            for (let i = 0; i < 24; i++) {
+                const prefix = dealPrefixes[i % dealPrefixes.length];
+                const suffix = dealSuffixes[Math.floor(i / dealPrefixes.length) % dealSuffixes.length];
+                const name = `${prefix} ${suffix} V${i + 1}`;
+
+                // Mix high-end and starter prices
+                let price;
+                if (prefix === "Starter" || prefix === "Newcomer" || prefix === "Basic") {
+                    price = 45000 + (Math.random() * 55000); // 45k to 100k
+                } else {
+                    price = 180000 + (Math.random() * 400000); // 180k to 580k
+                }
+
+                const discount = 10 + (i % 15);
+                const oldPrice = Math.floor(price * (1 + discount / 100));
+
+                dealsHTML += generateDealCard(name, price, oldPrice, discount, 'var(--neon-cyan)', i);
+            }
+
+            // Add Custom Admin Products to Mega Deals
+            customProducts.forEach((p, i) => {
+                const discount = 15;
+                const oldPrice = Math.floor(p.price * 1.15);
+                dealsHTML += generateDealCard(p.name, p.price, oldPrice, discount, p.inStock ? 'var(--neon-purple)' : '#666', i + 100, p.img, p.inStock);
+            });
+
+            grid.innerHTML = dealsHTML;
+        }
+
+        function generateDealCard(name, price, oldPrice, discount, color, id, customImg = null, inStock = true) {
+            const imgSrc = customImg || dealImages[id % dealImages.length];
+            const stockHtml = inStock ?
+                `<button class="add-btn" onclick="addDealToCart('${name}', ${Math.floor(price)})">GRAB</button>` :
+                `<button class="add-btn" style="background:#333; cursor:not-allowed;" disabled>SOLD OUT</button>`;
+
+            return `
+                <div class="product-card" style="border-color:${color}; opacity:${inStock ? 1 : 0.6};">
+                    <span class="card-badge" style="background:${color};">${inStock ? `SAVE ${discount}%` : 'OUT OF MISSION'}</span>
+                    <div class="product-img" style="background-image: url('${imgSrc}'); background-size: cover; background-position: center;"></div>
+                    <div class="product-info">
+                        <h3>${name}</h3>
+                        <p>Special Performance Bundle</p>
+                    </div>
+                    <div class="price-row">
+                        <div>
+                            <span style="text-decoration:line-through; color:var(--text-muted); font-size:0.8rem;">${formatPKR(oldPrice)}</span>
+                            <span class="price" style="font-size:1.1rem; color:${color};">${formatPKR(price)}</span>
+                        </div>
+                        ${stockHtml}
+                    </div>
+                </div>`;
+        }
+
+        function addDealToCart(name, price) {
+            cart.push({ name, price, desc: "Special Deal Bundle" });
+            saveCart();
+            updateCartUI();
+            if (!document.getElementById('cartSidebar').classList.contains('active')) toggleCart();
+        }
+
+        async function placeOrder() {
+            if (cart.length === 0) { alert('Your basket is empty!'); return; }
+
+            const user = JSON.parse(localStorage.getItem('rayz_user'));
+            if (!user) {
+                sessionStorage.setItem('redirectAfterLogin', window.location.href);
+                alert('AUTHENTICATION REQUIRED: Please login to complete your purchase.');
+                window.location.href = 'auth.html';
+                return;
+            }
+
+            const orderData = {
+                user: user.email,
+                items: cart,
+                address: document.getElementById('shippingAddress').value,
+                district: document.getElementById('shippingDistrict').value,
+                city: document.getElementById('shippingCity').value,
+                contact: document.getElementById('shippingContact').value,
+                landmark: document.getElementById('shippingLandmark').value,
+                payment: document.getElementById('paymentMethod').value,
+                timestamp: new Date().toISOString()
+            };
+
+            if (!orderData.address || !orderData.contact || !orderData.district) {
+                alert('CRITICAL: Complete all shipping data to proceed.');
+                return;
+            }
+
+            try {
+                const response = await fetch('http://localhost:3000/api/orders', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(orderData)
+                });
+
+                if (response.ok) {
+                    alert('ORDER RECEIVED! Your RAYZ rig is entering production.');
+                    cart = [];
+                    saveCart();
+                    updateCartUI();
+                    toggleCart();
+                } else {
+                    alert('Failed to place order. Try again later.');
+                }
+            } catch (err) {
+                alert('Server connection failed. Order saved locally only.');
+                console.error(err);
+            }
+        }
+
+        function saveCart() {
+            localStorage.setItem('rayz_cart', JSON.stringify(cart));
+        }
+
+        // Init Calls
+        window.onload = function () {
+            initDeals();
+            updateAuthUI();
+            updateCartUI();
+        };
+        function updateCartUI() {
+            const container = document.getElementById('cartItems');
+            const count = document.querySelector('.cart-count');
+            const totalDisplay = document.getElementById('cartTotal');
+
+            if (!container || !count) return;
+
+            count.innerText = cart.length;
+
+            let subtotal = 0;
+            container.innerHTML = '';
+
+            cart.forEach((item, index) => {
+                subtotal += item.price;
+                container.innerHTML += `
+                    <div class="cart-item">
+                        <div class="cart-item-header">
+                            <span>${item.name}</span>
+                            <span style="color:var(--neon-cyan)">${formatPKR(item.price)}</span>
+                        </div>
+                        <div class="remove-item" onclick="removeCartItem(${index})">REMOVE</div>
+                    </div>
+                `;
+            });
+
+            if (cart.length === 0) {
+                container.innerHTML = '<p style="text-align:center; color:var(--text-muted); margin-top:2rem;">No items...</p>';
+            }
+
+            const shippingCosts = { 'Karachi': 300, 'Lahore': 500, 'Islamabad': 500, 'Other': 800 };
+            const selectedCity = document.getElementById('shippingCity').value;
+            const shippingFee = cart.length > 0 ? shippingCosts[selectedCity] : 0;
+
+            const paymentMethod = document.getElementById('paymentMethod').value;
+            let total = subtotal + shippingFee;
+            let discountNote = "";
+
+            if (paymentMethod === 'Bank' && total > 0) {
+                const discount = total * 0.05;
+                total -= discount;
+                discountNote = `<div style="font-size:0.8rem; color:var(--neon-green);">Bank Transfer Discount (5%) Applied!</div>`;
+            }
+
+            totalDisplay.innerHTML = `Total: ${formatPKR(total)} ${discountNote}`;
+        }
+
+        function removeCartItem(index) {
+            cart.splice(index, 1);
+            saveCart();
+            updateCartUI();
+        }
+
+        function toggleCart() {
+            document.getElementById('cartSidebar').classList.toggle('active');
+        }
+
+        function checkAuthAndBuild() {
+            window.location.href = 'configurator.html';
+        }
+
+        function updateAuthUI() {
+            const user = localStorage.getItem('rayz_user');
+            const authLink = document.getElementById('authLink');
+            const ordersLink = document.getElementById('ordersLink');
+            if (user) {
+                const userData = JSON.parse(user);
+                let adminHtml = userData.role === 'admin' ? `<a href="admin.html" style="color:var(--neon-purple); margin-right:15px;">ADMIN</a>` : '';
+                authLink.innerHTML = `${adminHtml}<a href="javascript:void(0)" onclick="logout()" style="color:var(--neon-orange);">LOGOUT (${userData.name})</a>`;
+                if (ordersLink) ordersLink.style.display = 'inline-block';
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('rayz_user');
+            location.reload();
+        }
+
+        // Initialize
+        updateAuthUI();
+    </script>
+</body>
+
+</html>

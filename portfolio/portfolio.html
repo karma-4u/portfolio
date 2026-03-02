@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Muhammad Ashhal</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="testing.html" class="logo">Muhammad<span>Ashhal.</span></a>
+            <div class="menu-btn"><i class="fas fa-bars"></i></div>
+            <ul class="nav-links">
+                <li><a href="testing.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="portfolio.html" class="active" style="color: var(--accent-primary);">Portfolio</a></li>
+                <li><a href="process.html">Process</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div style="height: 80px;"></div> <!-- Spacer for fixed header -->
+
+    <!-- Portfolio Projects -->
+    <section id="portfolio">
+        <div class="container">
+            <h2 class="section-title">Featured Work</h2>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <article class="project-card reveal">
+                    <div class="project-img"
+                        style="background-image: url('../img/brand_identity_clean_1767441756889.png'); background-size: cover; background-position: center;">
+                    </div>
+                    <div class="project-info">
+                        <h3>Luxe Brand Identity</h3>
+                        <p>Complete branding package including logo design, business cards, and brand guidelines for a
+                            luxury fashion label.</p>
+                        <div class="project-tags">
+                            <span class="tag">Branding</span>
+                            <span class="tag">Logo Design</span>
+                            <span class="tag">Print</span>
+                        </div>
+                    </div>
+                </article>
+                <!-- Project 2 -->
+                <article class="project-card reveal">
+                    <div class="project-img"
+                        style="background-image: url('../img/product_mockup_clean_1767441775138.png'); background-size: cover; background-position: center;">
+                    </div>
+                    <div class="project-info">
+                        <h3>Neon Product Mockups</h3>
+                        <p>High-fidelity 3D product rendering and environment styling for a new energy drink campaign.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">3D Rendering</span>
+                            <span class="tag">Product Design</span>
+                            <span class="tag">Blender</span>
+                        </div>
+                    </div>
+                </article>
+                <!-- Project 3 -->
+                <article class="project-card reveal">
+                    <div class="project-img"
+                        style="background-image: url('../img/festival_poster_1767441451438.png'); background-size: cover; background-position: center;">
+                    </div>
+                    <div class="project-info">
+                        <h3>Music Festival Assets</h3>
+                        <p>Dynamic poster series, social media banners, and flyer designs for a summer electronic music
+                            festival.</p>
+                        <div class="project-tags">
+                            <span class="tag">Poster Design</span>
+                            <span class="tag">Typography</span>
+                            <span class="tag">Social Media</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Demo Websites -->
+    <section id="demos">
+        <div class="container">
+            <h2 class="section-title">Live Demos</h2>
+            <p
+                style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Explore fully functional demo websites created for clients. These showcases highlight my proficiency in
+                web development and UI/UX design.
+            </p>
+            <div class="projects-grid">
+                <!-- Demo 1 -->
+                <article class="project-card reveal">
+                    <div class="project-img"
+                        style="background-image: url('../img/rayz_logo.png'); background-size: contain; background-position: center; background-repeat: no-repeat; background-color: #050505;">
+                    </div>
+                    <div class="project-info">
+                        <h3>RAYZ.SYS</h3>
+                        <p>Ultimate PC Component Store with 1500+ items, smart filtering, and PC builder.</p>
+                        <div class="project-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">UI/UX</span>
+                        </div>
+                        <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+                            <a href="../ecommerce/e-commerce.html" class="btn btn-outline"
+                                style="padding: 0.5rem 1rem; font-size: 0.8rem; flex: 1; text-align: center;">View
+                                Shop</a>
+                            <a href="../ecommerce/configurator.html" class="btn btn-outline"
+                                style="padding: 0.5rem 1rem; font-size: 0.8rem; flex: 1; text-align: center; border-color: var(--accent-primary); color: var(--accent-primary);">Build
+                                PC</a>
+                        </div>
+                    </div>
+                </article>
+                <!-- Demo 2 -->
+                <article class="project-card reveal">
+                    <div class="project-img"
+                        style="background-image: url('../img/7abc388f-6249-48d6-8de1-717e2e3faed5.jpg'); background-size: cover; background-position: center;">
+                    </div>
+                    <div class="project-info">
+                        <h3>Corporate Agency</h3>
+                        <p>Professional business portfolio with smooth scrolling animations and contact integration.</p>
+                        <div class="project-tags">
+                            <span class="tag">HTML5</span>
+                            <span class="tag">CSS3</span>
+                            <span class="tag">JavaScript</span>
+                        </div>
+                        <div style="margin-top: 1.5rem;">
+                            <a href="#" class="btn btn-outline"
+                                style="padding: 0.5rem 1.5rem; font-size: 0.9rem; width: 100%; text-align: center;">View
+                                Demo</a>
+                        </div>
+                    </div>
+                </article>
+                <!-- Future Project Link -->
+                <article class="project-card reveal"
+                    style="border-style: dashed; border-color: var(--accent-primary); background: rgba(30, 41, 59, 0.2);">
+                    <div
+                        style="height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; text-align: center; color: var(--text-secondary);">
+                        <i class="fas fa-rocket"
+                            style="font-size: 3rem; margin-bottom: 1.5rem; color: var(--accent-primary); opacity: 0.8;"></i>
+                        <h3>Future Project</h3>
+                        <p style="margin-bottom: 1.5rem;">New innovation currently in development.</p>
+                        <a href="#" class="btn btn-outline"
+                            style="padding: 0.5rem 1rem; border-color: rgba(255,255,255,0.2); pointer-events: none; opacity: 0.5;">Coming
+                            Soon</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Muhammad Ashhal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script src="music_control.js"></script>
+</body>
+
+</html>

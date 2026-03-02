@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact & Reviews | Muhammad Ashhal</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="testing.html" class="logo">Muhammad<span>Ashhal.</span></a>
+            <div class="menu-btn"><i class="fas fa-bars"></i></div>
+            <ul class="nav-links">
+                <li><a href="testing.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="process.html">Process</a></li>
+                <li><a href="contact.html" class="active" style="color: var(--accent-primary);">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div style="height: 80px;"></div> <!-- Spacer -->
+
+    <!-- Contact -->
+    <section id="contact">
+        <div class="container contact-container">
+            <h2 class="section-title">Start a Project</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+                Looking for a unique logo, a stunning 3D mockup, or a complete brand overhaul? Let's bring your vision
+                to reality.
+            </p>
+            <div class="social-links" style="flex-direction: column; align-items: center; gap: 1rem;">
+                <p style="color: var(--text-secondary); margin-bottom: 0.5rem;">Connect on Instagram</p>
+                <img src="../img/instagram_qr.png" alt="Instagram QR Code"
+                    style="max-width: 200px; border-radius: var(--radius); border: 2px solid var(--accent-primary); box-shadow: 0 0 20px rgba(225, 48, 108, 0.3);">
+
+                <div style="margin-top: 2rem; text-align: center;">
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">Join my Community</p>
+                    <a href="https://discord.gg/NaDDhRMkmd" target="_blank"
+                        style="display: inline-flex; align-items: center; gap: 0.5rem; background: #5865F2; color: white; padding: 0.8rem 1.5rem; border-radius: 50px; font-weight: 600; text-decoration: none; transition: transform 0.3s; box-shadow: 0 0 20px rgba(88, 101, 242, 0.4);">
+                        <i class="fab fa-discord" style="font-size: 1.5rem;"></i> Join Server
+                    </a>
+                </div>
+            </div>
+
+            <form class="contact-form reveal" id="contactForm">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" class="form-control" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Project Details</label>
+                    <textarea name="message" class="form-control" rows="5"
+                        placeholder="Tell me about your project needs..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Get a Quote</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Client Feedback -->
+    <section id="testimonials" style="background: rgba(30, 41, 59, 0.3);">
+        <div class="container">
+            <h2 class="section-title">Client Feedback</h2>
+            <p
+                style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Read honest reviews from businesses and individuals who have trusted me with their vision.
+            </p>
+            <div class="projects-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                <div class="testimonial-card reveal">
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <p style="font-size: 1.1rem; font-style: italic; margin-bottom: 1.5rem;">"Absolutely transformed our
+                        brand. The attention to detail and 3D work was beyond what we expected. Highly recommended!"</p>
+                    <div style="font-weight: bold; color: var(--accent-secondary);">— Tech Startup CEO</div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <p style="font-size: 1.1rem; font-style: italic; margin-bottom: 1.5rem;">"The promotional assets for
+                        our festival were a hit. The colors and typography were spot on. A true artist!"</p>
+                    <div style="font-weight: bold; color: var(--accent-secondary);">— Event Organizer</div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <p style="font-size: 1.1rem; font-style: italic; margin-bottom: 1.5rem;">"Incredible turnaround time
+                        and the quality is top-notch. The best designer I've worked with."</p>
+                    <div style="font-weight: bold; color: var(--accent-secondary);">— Creative Director</div>
+                </div>
+            </div>
+
+            <!-- Review Chart -->
+            <div class="reveal" style="margin-top: 5rem;">
+                <h3 style="text-align: center; font-size: 1.8rem; margin-bottom: 2rem; color: white;">Expertise Rating
+                </h3>
+                <div
+                    style="max-width: 800px; margin: 0 auto; background: var(--card-bg); padding: 2rem; border-radius: var(--radius); border: 1px solid rgba(255,255,255,0.05);">
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <div
+                            style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; color: var(--text-secondary);">
+                            <span>Graphic Designing</span>
+                            <span>98%</span>
+                        </div>
+                        <div
+                            style="height: 10px; background: rgba(255,255,255,0.1); border-radius: 5px; overflow: hidden;">
+                            <div
+                                style="height: 100%; width: 98%; background: var(--gradient); border-radius: 5px; box-shadow: 0 0 10px var(--accent-primary);">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <div
+                            style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; color: var(--text-secondary);">
+                            <span>Web Development</span>
+                            <span>92%</span>
+                        </div>
+                        <div
+                            style="height: 10px; background: rgba(255,255,255,0.1); border-radius: 5px; overflow: hidden;">
+                            <div
+                                style="height: 100%; width: 92%; background: linear-gradient(135deg, #10b981, #34d399); border-radius: 5px; box-shadow: 0 0 10px #10b981;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div
+                            style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; color: var(--text-secondary);">
+                            <span>3D Modeling</span>
+                            <span>95%</span>
+                        </div>
+                        <div
+                            style="height: 10px; background: rgba(255,255,255,0.1); border-radius: 5px; overflow: hidden;">
+                            <div
+                                style="height: 100%; width: 95%; background: linear-gradient(135deg, #f59e0b, #fbbf24); border-radius: 5px; box-shadow: 0 0 10px #f59e0b;">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Reference Submission -->
+    <section id="submit-reference">
+        <div class="container contact-container">
+            <h2 class="section-title">Leave a Reference</h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;">
+                Worked with me? I'd love to hear your feedback! Your references help build trust with future clients.
+            </p>
+            <form class="contact-form reveal" id="referenceForm">
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input type="text" name="name" class="form-control" placeholder="John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label>Role / Company</label>
+                    <input type="text" name="role" class="form-control" placeholder="CEO at TechCorp" required>
+                </div>
+                <div class="form-group">
+                    <label>Rating</label>
+                    <select name="rating" class="form-control">
+                        <option value="5">⭐⭐⭐⭐⭐ (Excellent)</option>
+                        <option value="4">⭐⭐⭐⭐ (Good)</option>
+                        <option value="3">⭐⭐⭐ (Average)</option>
+                        <option value="2">⭐⭐ (Fair)</option>
+                        <option value="1">⭐ (Poor)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Your Feedback</label>
+                    <textarea name="feedback" class="form-control" rows="4" placeholder="Share your experience..."
+                        required></textarea>
+                </div>
+                <button type="submit" class="btn btn-outline" style="width: 100%;">Submit Reference</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Muhammad Ashhal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script src="music_control.js"></script>
+</body>
+
+</html>

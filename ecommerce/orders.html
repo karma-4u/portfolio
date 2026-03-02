@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Orders | RAYZ.SYS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #050505;
+            --neon-cyan: #00f3ff;
+            --neon-purple: #9d00ff;
+            --text-muted: #888;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--bg-dark);
+            color: #fff;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+            padding-bottom: 1rem;
+        }
+
+        .logo {
+            font-family: 'Orbitron';
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .order-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: 0.3s;
+        }
+
+        .order-card:hover {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.1);
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-family: 'Orbitron';
+        }
+
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            background: var(--neon-cyan);
+            color: #000;
+        }
+
+        .item-list {
+            list-style: none;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin: 1rem 0;
+        }
+
+        .order-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 1rem;
+        }
+
+        .total {
+            color: var(--neon-cyan);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .no-orders {
+            text-align: center;
+            margin-top: 5rem;
+            color: var(--text-muted);
+        }
+
+        .btn-back {
+            color: var(--neon-cyan);
+            text-decoration: none;
+            font-family: 'Orbitron';
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="e-commerce.html" class="logo">RAYZ<span style="color:var(--neon-cyan)">.SYS</span></a>
+            <h2 style="font-family:'Orbitron'">MY ORDERS</h2>
+            <a href="e-commerce.html" class="btn-back"><i class="fas fa-arrow-left"></i> BACK</a>
+        </div>
+
+        <div id="ordersList">
+            <!-- Orders injected here -->
+            <div class="no-orders">Initializing connection to neural link...</div>
+        </div>
+    </div>
+
+    <script>
+        const user = JSON.parse(localStorage.getItem('rayz_user'));
+        if (!user) {
+            window.location.href = 'auth.html';
+        }
+
+        async function fetchOrders() {
+            try {
+                const response = await fetch(`http://localhost:3000/api/orders/${user.email}`);
+                const orders = await response.json();
+                renderOrders(orders);
+            } catch (err) {
+                document.getElementById('ordersList').innerHTML = '<div class="no-orders">Failed to sync with mission control.</div>';
+            }
+        }
+
+        function renderOrders(orders) {
+            const list = document.getElementById('ordersList');
+            if (orders.length === 0) {
+                list.innerHTML = '<div class="no-orders"><i class="fas fa-box-open fa-3x" style="margin-bottom:1rem"></i><br>No missions completed yet. Start building!</div>';
+                return;
+            }
+
+            list.innerHTML = orders.reverse().map(order => `
+                <div class="order-card">
+                    <div class="order-header">
+                        <span>ID: ${order.id}</span>
+                        <span class="status-badge" style="background:${getStatusColor(order.status)}">${order.status.toUpperCase()}</span>
+                    </div>
+                    
+                    <div class="tracking-track" style="display:flex; justify-content:space-between; margin:1.5rem 0; position:relative; padding:0 10px;">
+                        <div style="position:absolute; top:50%; left:5%; right:5%; height:2px; background:#333; z-index:0;"></div>
+                        <div style="position:absolute; top:50%; left:5%; width:${getTrackingProgress(order.status)}%; height:2px; background:var(--neon-cyan); z-index:1; transition:0.5s;"></div>
+                        <div class="step" style="z-index:2; text-align:center;">
+                            <div style="width:12px; height:12px; border-radius:50%; background:var(--neon-cyan); margin:0 auto 5px; box-shadow:0 0 10px var(--neon-cyan);"></div>
+                            <div style="font-size:0.6rem; color:var(--neon-cyan)">PLACED</div>
+                        </div>
+                        <div class="step" style="z-index:2; text-align:center;">
+                            <div style="width:12px; height:12px; border-radius:50%; background:${order.status !== 'Processing' ? 'var(--neon-cyan)' : '#333'}; margin:0 auto 5px;"></div>
+                            <div style="font-size:0.6rem; color:${order.status !== 'Processing' ? '#fff' : '#444'}">SHIPPED</div>
+                        </div>
+                        <div class="step" style="z-index:2; text-align:center;">
+                            <div style="width:12px; height:12px; border-radius:50%; background:${order.status === 'Delivered' ? 'var(--neon-cyan)' : '#333'}; margin:0 auto 5px;"></div>
+                            <div style="font-size:0.6rem; color:${order.status === 'Delivered' ? '#fff' : '#444'}">DELIVERED</div>
+                        </div>
+                    </div>
+
+                    <div style="font-size:0.8rem; color:#666">${new Date(order.date).toLocaleString()}</div>
+                    <ul class="item-list">
+                        ${order.items.map(item => `<li>${item.name}</li>`).join('')}
+                    </ul>
+                    <div class="order-footer" style="flex-direction:column; align-items:flex-start; gap:5px;">
+                        <div style="font-size:0.85rem; color:#aaa;">
+                            <b>Shipping:</b> ${order.address || 'N/A'}, ${order.district || 'N/A'}, ${order.city}<br>
+                            <b>Contact:</b> ${order.contact || 'N/A'} ${order.landmark ? `| <b>Landmark:</b> ${order.landmark}` : ''}
+                        </div>
+                        <div style="display:flex; justify-content:space-between; width:100%; margin-top:10px; align-items:center;">
+                            <div style="display:flex; gap:15px; align-items:center;">
+                                <div style="font-size:0.85rem; color:#888;">Method: ${order.payment}</div>
+                                ${order.status === 'Processing' ? `<button onclick="cancelMission('${order.id}')" style="background:none; border:1px solid #ff4444; color:#ff4444; font-family:'Orbitron'; font-size:0.6rem; padding:4px 8px; cursor:pointer; border-radius:3px; transition:0.3s;" onmouseover="this.style.background='#ff4444'; this.style.color='#000'" onmouseout="this.style.background='transparent'; this.style.color='#ff4444'">CANCEL MISSION</button>` : ''}
+                            </div>
+                            <div class="total">Rs. ${calculateTotal(order).toLocaleString()}</div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function calculateTotal(order) {
+            let subtotal = order.items.reduce((acc, item) => acc + item.price, 0);
+            const shipping = { 'Karachi': 300, 'Lahore': 500, 'Islamabad': 500, 'Other': 800 }[order.city] || 0;
+            let total = subtotal + shipping;
+            if (order.payment === 'Bank') total *= 0.95;
+            return total;
+        }
+
+        function getStatusColor(status) {
+            if (status === 'Delivered') return '#00ff88';
+            if (status === 'Shipped') return '#00f3ff';
+            return '#ffaa00';
+        }
+
+        function getTrackingProgress(status) {
+            if (status === 'Delivered') return 90;
+            if (status === 'Shipped') return 45;
+            return 0;
+        }
+
+        async function cancelMission(orderId) {
+            if (!confirm('CONFIRM ABORT: Are you sure you want to cancel this mission?')) return;
+            try {
+                const res = await fetch(`http://localhost:3000/api/orders/${orderId}`, {
+                    method: 'DELETE'
+                });
+                if (res.ok) {
+                    alert('MISSION ABORTED: Order successfully removed.');
+                    fetchOrders();
+                }
+            } catch (err) {
+                alert('Connection failure with Mission Control.');
+            }
+        }
+
+        fetchOrders();
+    </script>
+</body>
+
+</html>

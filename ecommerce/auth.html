@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Signup | RAYZ.SYS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #050505;
+            --neon-cyan: #00f3ff;
+            --neon-purple: #9d00ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--bg-dark);
+            color: #fff;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: radial-gradient(circle at 50% 50%, rgba(157, 0, 255, 0.15) 0%, transparent 50%);
+        }
+
+        .auth-container {
+            width: 100%;
+            max-width: 450px;
+            padding: 3rem;
+            background: rgba(15, 15, 20, 0.8);
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            position: relative;
+            border: 2px solid var(--neon-cyan);
+        }
+
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tab {
+            flex: 1;
+            padding: 0.8rem;
+            text-align: center;
+            cursor: pointer;
+            font-family: 'Orbitron';
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .tab.active {
+            color: var(--neon-cyan);
+            border-bottom: 2px solid var(--neon-cyan);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #a0a0a0;
+            font-size: 0.9rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: #fff;
+            font-family: 'Rajdhani';
+            outline: none;
+        }
+
+        input:focus {
+            border-color: var(--neon-cyan);
+        }
+
+        .auth-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--neon-purple);
+            border: none;
+            color: #fff;
+            font-family: 'Orbitron';
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-align: center;
+        }
+
+        .auth-btn:hover {
+            box-shadow: 0 0 20px var(--neon-cyan);
+            transform: translateY(-2px);
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #666;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="auth-container">
+        <div class="logo-text">RAYZ<span style="color:var(--neon-cyan)">.SYS</span></div>
+
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('login')">LOGIN</div>
+            <div class="tab" onclick="switchTab('signup')">SIGNUP</div>
+        </div>
+
+        <div id="loginForm">
+            <div class="form-group">
+                <label>EMAIL</label>
+                <input type="email" id="loginEmail" placeholder="pilot@rayz.sys">
+            </div>
+            <div class="form-group">
+                <label>PASSWORD</label>
+                <input type="password" id="loginPass" placeholder="••••••••">
+            </div>
+            <button class="auth-btn" onclick="handleAuth('login')">INITIALIZE SESSION</button>
+        </div>
+
+        <div id="signupForm" style="display:none;">
+            <div class="form-group">
+                <label>FULL NAME</label>
+                <input type="text" id="signupName" placeholder="Ghost Riley">
+            </div>
+            <div class="form-group">
+                <label>EMAIL</label>
+                <div style="display:flex; gap:10px;">
+                    <input type="email" id="signupEmail" placeholder="ghost@rayz.sys">
+                    <button onclick="requestOTP()"
+                        style="width:120px; font-size:0.7rem; background:rgba(0,243,255,0.1); border:1px solid var(--neon-cyan); color:var(--neon-cyan); cursor:pointer; border-radius:5px;">GET
+                        OTP</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>OTP CODE (Check Terminal)</label>
+                <input type="text" id="signupOTP" placeholder="123456">
+            </div>
+            <div class="form-group">
+                <label>PASSWORD</label>
+                <input type="password" id="signupPass" placeholder="••••••••">
+            </div>
+            <button class="auth-btn" style="background:var(--neon-cyan); color:#000;"
+                onclick="handleAuth('signup')">CREATE ACCOUNT</button>
+        </div>
+
+        <a href="e-commerce.html" class="back-link"><i class="fas fa-arrow-left"></i> RETURN TO STORE</a>
+    </div>
+
+    <script>
+        function switchTab(type) {
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(t => t.classList.remove('active'));
+            if (type === 'login') {
+                tabs[0].classList.add('active');
+                document.getElementById('loginForm').style.display = 'block';
+                document.getElementById('signupForm').style.display = 'none';
+            } else {
+                tabs[1].classList.add('active');
+                document.getElementById('loginForm').style.display = 'none';
+                document.getElementById('signupForm').style.display = 'block';
+            }
+        }
+
+        async function requestOTP() {
+            const email = document.getElementById('signupEmail').value;
+            if (!email) return alert('Enter email first');
+
+            try {
+                const response = await fetch('http://localhost:3000/api/auth/request-otp', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+                const data = await response.json();
+                alert(data.message);
+            } catch (err) {
+                alert('Backend Server is offline. Try "node server.js"');
+            }
+        }
+
+        async function handleAuth(type) {
+            const emailField = type === 'signup' ? 'signupEmail' : 'loginEmail';
+            const passField = type === 'signup' ? 'signupPass' : 'loginPass';
+            const nameField = 'signupName';
+            const otpField = 'signupOTP';
+
+            const email = document.getElementById(emailField).value;
+            const password = document.getElementById(passField).value;
+            const name = type === 'signup' ? document.getElementById(nameField).value : '';
+            const otp = type === 'signup' ? document.getElementById(otpField).value : '';
+
+            if (!email || !password) {
+                alert('Please enter your credentials');
+                return;
+            }
+
+            const endpoint = type === 'signup' ? '/api/auth/signup' : '/api/auth/login';
+            const body = type === 'signup' ? { name, email, password, otp } : { email, password };
+
+            try {
+                const response = await fetch('http://localhost:3000' + endpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body)
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    localStorage.setItem('rayz_user', JSON.stringify(data.user));
+                    alert(data.message);
+
+                    if (data.user.role === 'admin') {
+                        window.location.href = 'admin.html';
+                    } else {
+                        const redirectUrl = sessionStorage.getItem('redirectAfterLogin') || 'e-commerce.html';
+                        sessionStorage.removeItem('redirectAfterLogin');
+                        window.location.href = redirectUrl;
+                    }
+                } else {
+                    alert(data.message || 'Authentication failed');
+                }
+            } catch (error) {
+                console.error('Auth Error:', error);
+                alert('Backend Server is offline. Try "node server.js"');
+            }
+        }
+    </script>
+</body>
+
+</html>

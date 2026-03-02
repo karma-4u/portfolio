@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Admin",
+    "email": "admin@rayz.sys",
+    "password": "admin",
+    "role": "admin"
+  },
+  {
+    "id": 1767605407214,
+    "name": "karma",
+    "email": "ashhalgamer90@gmail.com",
+    "password": "karma_4u",
+    "role": "user"
+  },
+  {
+    "id": "1768080199553",
+    "name": "husan",
+    "email": "Kasstoog1@proton.me",
+    "password": "12345",
+    "role": "user"
+  }
+]

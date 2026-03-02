@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | RAYZ.SYS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #050505;
+            --neon-cyan: #00f3ff;
+            --neon-purple: #9d00ff;
+            --text-muted: #888;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--bg-dark);
+            color: #fff;
+            padding: 2rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(15, 15, 20, 0.4);
+            border: 1px solid rgba(0, 243, 255, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            position: relative;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: 0.4s;
+        }
+
+        .card:hover {
+            border-color: rgba(0, 243, 255, 0.3);
+            box-shadow: 0 10px 40px rgba(0, 243, 255, 0.1);
+        }
+
+        .card h2 {
+            font-family: 'Orbitron';
+            color: #fff;
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+            letter-spacing: 3px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card h2 i {
+            color: var(--neon-cyan);
+        }
+
+        .stat-box {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 1rem;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-family: 'Orbitron';
+            color: var(--neon-cyan);
+            text-shadow: 0 0 15px var(--neon-cyan);
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #888;
+            font-size: 0.8rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.8rem;
+            background: #000;
+            border: 1px solid #333;
+            color: #fff;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--neon-cyan);
+            color: #000;
+            font-family: 'Orbitron';
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 1rem;
+        }
+
+        .order-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+        }
+
+        .order-row span {
+            color: #aaa;
+        }
+
+        /* Mission Progress Styles */
+        .mission-progress-container {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .progress-bar-bg {
+            height: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 243, 255, 0.1);
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+            width: 0%;
+            transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 0 10px var(--neon-cyan);
+        }
+    </style>
+</head>
+
+<body>
+    <div
+        style="max-width: 1400px; margin: 0 auto 2rem auto; display: flex; justify-content: space-between; align-items: center;">
+        <div class="logo-text" style="font-family:'Orbitron'; font-size: 1.5rem; margin-bottom: 0;">RAYZ<span
+                style="color:var(--neon-cyan)">.SYS</span> <span
+                style="font-size: 0.8rem; color: var(--neon-purple); letter-spacing: 2px;">ADMIN_OS</span></div>
+        <div style="display: flex; gap: 20px;">
+            <a href="#stats"
+                style="color: #666; text-decoration: none; font-family: 'Orbitron'; font-size: 0.7rem; letter-spacing: 1px;">DASHBOARD</a>
+            <a href="#inventory"
+                style="color: #666; text-decoration: none; font-family: 'Orbitron'; font-size: 0.7rem; letter-spacing: 1px;">INVENTORY</a>
+            <a href="#logs"
+                style="color: #666; text-decoration: none; font-family: 'Orbitron'; font-size: 0.7rem; letter-spacing: 1px;">MISSION
+                LOGS</a>
+            <a href="e-commerce.html"
+                style="color: var(--neon-cyan); text-decoration: none; font-family: 'Orbitron'; font-size: 0.8rem; border: 1px solid var(--neon-cyan); padding: 0.5rem 1rem; border-radius: 5px; transition: 0.3s; margin-left: 20px;">
+                <i class="fas fa-store"></i> RETURN TO STORE
+            </a>
+        </div>
+    </div>
+
+    <div class="grid">
+        <!-- Sidebar: Stats & Add Product -->
+        <div class="sidebar">
+            <div class="card" id="stats" style="margin-bottom: 2rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                    <h2 style="margin-bottom: 0;"><i class="fas fa-satellite-dish"></i> MISSION CONTROL</h2>
+                    <i class="fas fa-sync-alt" style="cursor: pointer; color: var(--neon-cyan); font-size: 0.9rem;"
+                        onclick="refreshAll()"></i>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="totalCredits">Rs. 0</div>
+                    <div class="stat-label">Total Cycle Revenue</div>
+                </div>
+
+                <div class="mission-progress-container">
+                    <div
+                        style="display:flex; justify-content:space-between; font-family:'Orbitron'; font-size:0.75rem;">
+                        <span>CYCLE PROGRESS</span>
+                        <span id="cycleText">0 / 50</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" id="missionProgress"></div>
+                    </div>
+                    <div style="color:#666; font-size:0.7rem; text-align:right;">
+                        <i class="fas fa-clock"></i> <span id="daysRemaining">30</span> DAYS UNTIL WINDOW RESET
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-vial"></i> INJECT COMPONENT</h2>
+                <div class="form-group">
+                    <label>IDENTIFIER (NAME)</label>
+                    <input type="text" id="pName" placeholder="RTX 5090 Prototype">
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px;">
+                    <div class="form-group">
+                        <label>CREDIT VALUE</label>
+                        <input type="number" id="pPrice" placeholder="500000">
+                    </div>
+                    <div class="form-group">
+                        <label>CLASS</label>
+                        <input type="text" id="pType" placeholder="GPU">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>VISUAL LINK (IMAGE URL)</label>
+                    <input type="text" id="pImg" placeholder="https://image-link.com/tech.jpg">
+                </div>
+                <button class="btn" onclick="addProduct()">EXECUTE INJECTION</button>
+            </div>
+            <div class="card" id="inventory" style="margin-top: 2rem;">
+                <h2><i class="fas fa-boxes"></i> STORE INVENTORY</h2>
+                <div id="inventoryList" style="max-height: 400px; overflow-y: auto;">
+                    <p style="color: #666; text-align: center; font-size: 0.8rem;">Scanning database...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main: Global Orders -->
+        <div class="main">
+            <div class="card" id="logs" style="min-height: 80vh;">
+                <h2><i class="fas fa-list-ul"></i> GLOBAL MISSION LOGS</h2>
+                <div id="allOrders" style="max-height: 85vh; overflow-y: auto;">
+                    <p style="color: #666; text-align: center; margin-top: 5rem;">No activity detected...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check if Admin
+        const user = JSON.parse(localStorage.getItem('rayz_user'));
+        if (!user || user.role !== 'admin') {
+            alert('RESTRICTED ACCESS: Mission Control credentials required.');
+            window.location.href = 'auth.html';
+        }
+
+        // Shared Redirect Logic
+        function checkAuthAndBuild() {
+            window.location.href = 'configurator.html';
+        }
+
+        async function fetchStats() {
+            try {
+                const res = await fetch('/api/admin/stats');
+                if (!res.ok) throw new Error('Stats fetch failed');
+                const data = await res.json();
+
+                document.getElementById('totalCredits').innerText = 'Rs. ' + data.totalCredits.toLocaleString();
+                document.getElementById('cycleText').innerText = `${data.orderCount} / ${data.missionTarget}`;
+                document.getElementById('daysRemaining').innerText = data.daysLeft;
+
+                const percentage = (data.orderCount / data.missionTarget) * 100;
+                document.getElementById('missionProgress').style.width = percentage + '%';
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        async function fetchOrders() {
+            try {
+                const res = await fetch('/api/admin/orders');
+                if (!res.ok) throw new Error('Orders fetch failed');
+                const orders = await res.json();
+                const list = document.getElementById('allOrders');
+                if (orders.length === 0) {
+                    list.innerHTML = '<p style="color: #666; text-align: center; margin-top: 5rem;">No orders found.</p>';
+                    return;
+                }
+                list.innerHTML = orders.reverse().map(o => `
+                    <div class="order-row" style="flex-direction:column; gap:8px;">
+                        <div style="display:flex; justify-content:space-between; width:100%;">
+                            <div>
+                                <b style="color:var(--neon-cyan)">${o.id}</b> 
+                                <i class="fas fa-trash" style="color:#ff4444; font-size:0.75rem; cursor:pointer; margin-left:10px;" title="Delete Order" onclick="deleteOrder('${o.id}')"></i><br>
+                                <span style="font-size:0.75rem">${o.user}</span>
+                            </div>
+                            <div style="text-align:right">
+                                <b>Rs. ${o.items.reduce((acc, i) => acc + i.price, 0).toLocaleString()}</b><br>
+                                <select onchange="updateStatus('${o.id}', this.value)" style="background:#000; color:var(--neon-cyan); border:1px solid #333; font-size:0.7rem; padding:2px; border-radius:3px;">
+                                    <option value="Processing" ${o.status === 'Processing' ? 'selected' : ''}>PROCESSING</option>
+                                    <option value="Shipped" ${o.status === 'Shipped' ? 'selected' : ''}>SHIPPED</option>
+                                    <option value="Delivered" ${o.status === 'Delivered' ? 'selected' : ''}>DELIVERED</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div style="font-size:0.8rem; color:#666; border-top:1px solid rgba(255,255,255,0.03); padding-top:5px;">
+                            <b>Logistics:</b> ${o.address || 'N/A'}, ${o.district || 'N/A'}, ${o.city} | <b>Tel:</b> ${o.contact || 'N/A'}
+                        </div>
+                    </div>
+                `).join('');
+            } catch (err) {
+                console.error(err);
+                document.getElementById('allOrders').innerHTML = '<p style="color: #ff4444; text-align: center; margin-top: 5rem;">Failed to load mission logs.</p>';
+            }
+        }
+
+        async function addProduct() {
+            const product = {
+                name: document.getElementById('pName').value,
+                price: parseInt(document.getElementById('pPrice').value),
+                img: document.getElementById('pImg').value,
+                type: document.getElementById('pType').value,
+                desc: 'Premium selection added via Command Center.'
+            };
+            if (!product.name || !product.price) return alert('Name and Price required');
+
+            try {
+                const res = await fetch('/api/admin/products', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(product)
+                });
+                if (res.ok) {
+                    alert('Product successfully injected into store!');
+                    document.getElementById('pName').value = '';
+                    document.getElementById('pPrice').value = '';
+                    document.getElementById('pImg').value = '';
+                    document.getElementById('pType').value = '';
+                    refreshAll();
+                } else {
+                    alert('Injection failed.');
+                }
+            } catch (err) {
+                alert('Connection error.');
+            }
+        }
+
+        async function updateStatus(orderId, newStatus) {
+            try {
+                const res = await fetch(`/api/orders/${orderId}/status`, {
+                    method: 'PATCH',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ status: newStatus })
+                });
+                if (res.ok) fetchStats();
+            } catch (e) {
+                alert('Update failed');
+            }
+        }
+
+        async function fetchProducts() {
+            try {
+                const res = await fetch('/api/products');
+                if (!res.ok) throw new Error('Products fetch failed');
+                const products = await res.json();
+                const list = document.getElementById('inventoryList');
+                if (products.length === 0) {
+                    list.innerHTML = '<p style="color: #666; text-align: center; font-size: 0.8rem; padding: 1rem;">No products in database.</p>';
+                    return;
+                }
+                list.innerHTML = products.map(p => `
+                    <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.05);">
+                        <div style="font-size:0.85rem;">
+                            <b>${p.name}</b><br>
+                            <span style="color:#666">${p.type}</span>
+                        </div>
+                        <div style="display:flex; gap:10px; align-items:center;">
+                            <button onclick="toggleStock('${p.id}', ${p.inStock})" style="background:none; border:1px solid ${p.inStock ? 'var(--neon-cyan)' : '#ffaa00'}; color:${p.inStock ? 'var(--neon-cyan)' : '#ffaa00'}; font-size:0.6rem; padding:3px 6px; border-radius:3px; cursor:pointer;" title="Toggle Stock">
+                                ${p.inStock ? 'IN STOCK' : 'OUT OF ORDER'}
+                            </button>
+                            <i class="fas fa-trash" style="color:#ff4444; font-size:0.75rem; cursor:pointer;" title="Delete Product" onclick="removeProduct('${p.id}')"></i>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (err) {
+                console.error(err);
+                document.getElementById('inventoryList').innerHTML = '<p style="color: #ff4444; text-align: center; font-size: 0.8rem;">Failed to load inventory.</p>';
+            }
+        }
+
+        async function toggleStock(id, current) {
+            try {
+                await fetch(`/api/admin/products/${id}/stock`, {
+                    method: 'PATCH',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ inStock: !current })
+                });
+                fetchProducts();
+            } catch (err) {
+                alert('Stock update failed');
+            }
+        }
+
+        async function removeProduct(id) {
+            if (!confirm('Permanently remove this product from store?')) return;
+            try {
+                const res = await fetch(`/api/admin/products/${id}`, { method: 'DELETE' });
+                if (res.ok) fetchProducts();
+                else alert('Delete failed');
+            } catch (err) {
+                alert('Connection error');
+            }
+        }
+
+        async function deleteOrder(id) {
+            if (!confirm('Permanently remove this order from global history?')) return;
+            try {
+                const res = await fetch(`/api/orders/${id}`, { method: 'DELETE' });
+                if (res.ok) {
+                    fetchOrders();
+                    fetchStats();
+                } else {
+                    alert('Order deletion failed.');
+                }
+            } catch (err) {
+                alert('Connection error');
+            }
+        }
+
+        function refreshAll() {
+            fetchStats();
+            fetchOrders();
+            fetchProducts();
+        }
+
+        refreshAll();
+    </script>
+</body>
+
+</html>
